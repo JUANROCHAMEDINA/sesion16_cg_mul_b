@@ -43,6 +43,71 @@
 	  	var colorGd = new THREE.Color( 0x66AA66 );
 	  	var colorBd = new THREE.Color( 0x6666AA );
 		  
+		  function cono(transformación){             
+   
+        
+           //el cono sin transformar
+          var altura
+
+            // en este caso que el condicional dice que si no hay transformacion entonces su altura sera 1
+            if (transformación==false){
+            altura =1;}
+
+            // en caso contrario igual a 3
+                else {altura =3;}
+
+
+        //variables asignadas para el cono como son los lados y el diametro de la base
+
+        var diametro =2;
+        var lados = 10;
+        //investigue y tome en cuenta en esta pagina para guiarme con el cone geometry. https://threejs.org/docs/#api/en/geometries/ConeGeometry
+
+        var coneGeometry = new THREE.ConeGeometry(diametro,altura,lados); // este constructor tiene 3 parametros y anteriormente ya los asignamos con  las variables
+        var basicMaterial = new THREE.MeshLambertMaterial({color: 0x10E2C5}); // agragamos la textura al cono 
+        var cone = new THREE.Mesh(coneGeometry, basicMaterial); 
+        scene.add(cone);
+
+        cone.rotation.set(Math.PI/2, 0, 0); //asignamos la rotacion de este en pi medios en el eje x 
+        cone.position.z=altura/2;           // tambien asignamos una posicion en z en el cual la altura se dividira en 2
+         camera.lookAt(0,0,0);
+
+    
+
+    // bien ahora realizaremos el condicional para cuando el cono este transformado
+
+
+    if (transformación==true ){
+
+             cone.rotation.z=-Math.PI/2;
+
+             cone.position.x=altura/2+0.85;
+
+             cone.position.y=0.83;
+
+             cone.position.z=0;
+
+             cone.rotation.y=-Math.PI/5.3;
+
+             camera.position.y = 8;
+
+             camera.position.x = -3;
+
+             camera.position.z = 20;
+
+             camera.lookAt(-2,0,0);
+
+        }
+     
+    }
+     cono(true);
+
+
+
+    var light = new THREE.PointLight(0xFFFFFF);
+    light.position.set(-10,15,50);
+    scene.add(light);
+
 	  	//CREAR LAS GRILLAS PARA EL ESCENARIO
 	  	var axesHelper = new THREE.AxesHelper( size );
 	  	var gridHelperXY = new THREE.GridHelper( size, divisions, color1, color1);
@@ -59,12 +124,7 @@
       var arrowY = new THREE.ArrowHelper( y, origin, arrowSize, colorG );
       var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
       
-      var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
-      var geometry = new THREE.CubeGeometry(2, 2, 2);
-      // Create the final object to add to the scene
-      var boxObject = new THREE.Mesh( geometry, material );
-      scene.add( boxObject );
-               
+     
 	  	//AGREGAR A LA ESCENA
       scene.add( gridHelperXZ );
 	  	scene.add( arrowX );	
