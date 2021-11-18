@@ -74,10 +74,24 @@
       // esta variable nos ayudara para dar un alargamiento a la esfera en su eje z
       alargarZ=6;
 
-      //ahora con este constructor asignamos sus parametros, en ejercicio nos asignan que su alargamiento en z sea 3 multiplicaremos por dos para su alargamiento
-      // y asi mismo haremos con su  radio 
+      //ahora con este constructor asignamos sus parametros, en ejercicio nos asignan que su alargamiento en z sea 3 multiplicaremos por dos para su alargamiento y asi mismo haremos con su  radio 
       sphereGeometry.scale(radio*2,alargarZ,radio*2);
       camera.lookAt(0,0,0);
+
+
+     //tomamos el punto e ya que esto nos sirve para el procedimiento de f y ahora realizaremos la segunda transformacion
+
+        sphere.rotation.z=(Math.PI*53)/-180; 
+        // primero rotaremos en z , debido a que este quede en diagonal con respecto al origen, entonces su angulo sera de -180 
+        sphere.position.x=1.5;
+        //ahora esto es solo con prueba y mirar como acomodarlo entonces lo movere 1.5 en el eje x y y z para que x y y z sea igual a 0 y queden en el origen 
+        // y sea tal cual como el ejercicio
+
+        sphere.position.z=1.5;
+        
+        sphere.position.y=1.5;
+        
+        sphere.rotation.y=(Math.PI/4);
 
 	  	}
 
